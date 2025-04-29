@@ -140,7 +140,7 @@ hover:bg-gradient-to-tr from-[#2c2d30] to-[#44464a] hover:ring-1 hover:ring-gray
                       <span className="absolute bottom-full mb-2 hidden group-hover:block text-xs text-white bg-black px-3 py-2 rounded-md shadow-md">Attach</span>
                     </button>
                     <button className="bg-[#64656b] rounded-full p-3 hover:bg-[#747578] relative group">
-                      <Image src={assets.arrow_icon_dull} alt="Send" width={15} height={18} />
+                      <Image src={assets.arrow_icon_dull} alt="Send" width={16} height={18} />
                       <span className="absolute bottom-full mb-2 hidden  group-hover:block text-xs text-white bg-black px-3 py-1 rounded-tl-2xl rounded-tr-1px rounded-tr-2xl rounded-br-2xl shadow-md">Send</span>
                     </button>
                   </div>
