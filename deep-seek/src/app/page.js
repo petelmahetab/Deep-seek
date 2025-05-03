@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { assets } from "@/images/assets/assets.js";
+import Sidebar from "./components/sidebar";
 
 export default function Home() {
-  const [expand, setExpand] = useState(false);
+  // const [expand, setExpand] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [hideSidebar, setHideSidebar] = useState(false);
+  // const [hideSidebar, setHideSidebar] = useState(false);
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -26,8 +27,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#2a2b2f] text-white flex overflow-hidden">
+      <Sidebar/>
       {/* Sidebar */}
-      {!hideSidebar && (
+      {/* {!hideSidebar && (
         <div className={`transition-all duration-300 ease-in-out   bg-[#1e1f24] h-screen flex flex-col justify-between items-center pt-6 pb-6  ${expand ? "w-60" : "w-16"} `}>
           <div className="flex flex-col items-center gap-6 ">
             <div onClick={() => setExpand(!expand)} className="cursor-pointer mb-4">
@@ -95,7 +97,7 @@ hover:bg-gradient-to-tr from-[#2c2d30] to-[#44464a] hover:ring-1 hover:ring-gray
             <div className="absolute bottom-full mb-2 hidden group-hover:block text-xs text-white bg-gray-700 px-2 py-1 rounded shadow-md">Profile</div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 overflow-hidden">
@@ -108,7 +110,7 @@ hover:bg-gradient-to-tr from-[#2c2d30] to-[#44464a] hover:ring-1 hover:ring-gray
             <p className="text-base mt-1 text-gray-300">How can I help you today?</p>
 
             <div className="mt-8 w-full h-72">
-              <div className="bg-[#44464a] rounded-[30px] px-6 py-2 h-32 flex flex-col gap-4 overflow-hidden">
+              <div className="bg-[#44464a] rounded-[30px] px-6 py-2 h-32 flex flex-col gap-4 shrink-0 overflow-hidden">
                 <div className="flex items-start">
                   <textarea
                     ref={textareaRef}
