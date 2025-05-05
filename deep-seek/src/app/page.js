@@ -60,7 +60,7 @@ export default function Home() {
                 </div>
 
             
-                <div className="flex flex-wrap items-center justify-between gap-3 pb-8">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-3">
                   <div className="flex items-center gap-2 flex-wrap">
                     <button className="bg-[#294cb5c7] text-blue-400 text-sm font-medium rounded-full px-4 py-1.5 flex items-center gap-1 group relative">
                       <Image
@@ -119,7 +119,7 @@ export default function Home() {
 
            
             <div className="absolute bottom-[-40px] w-full flex justify-center">
-              <p className="text-[12px] text-zinc-500 font-bold">
+              <p className="text-[13px] text-zinc-500 font-bold">
                 AI-generated, for reference only
               </p>
             </div>

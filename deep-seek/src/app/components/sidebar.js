@@ -4,37 +4,172 @@ import React from "react";
 import { useState } from "react";
 import Image from "next/image";
 import { assets } from "@/images/assets/assets.js";
+import { useClerk, useUser, UserButton } from "@clerk/nextjs";
+import ChatHistorySection from "./ChatHistorySection";
+import ChatHistoryItem from "./ChatHistoryItem";
 
 const Sidebar = () => {
   const [expand, setExpand] = useState(false);
-  const [first, setfirst] = useState(false);
+  const { openSignIn } = useClerk();
+  const { isSignedIn } = useUser();
 
-  const chatHistory = [
-    { title: "10 OS Interview Questions wit", date: "7 Days" },
-    { title: "Greeting and Offer of Assistant", date: "30 Days" },
-    { title: "Optimizing Hamming Distance", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "2025-03", date: "" },
-    { title: "Resolving WebContainer Initial", date: "" },
-    { title: "Installing Node.js with NVM on", date: "" },
-    { title: "Resolving MongoDB Atlas Con", date: "" },
-    { title: "Resolving Vercel Serverless Fu", date: "" },
-    { title: "10 OS Interview Questions wit", date: "7 Days" },
-    { title: "Greeting and Offer of Assistant", date: "30 Days" },
-    { title: "Optimizing Hamming Distance", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-  ];
+  const signInAppearance = {
+    elements: {
+      rootBox: {
+        backgroundColor: "#1e1f24",
+        color: "#ffffff",
+      },
+      modalOverlay: {
+        backgroundColor: "rgba(30, 31, 36, 0.9)",
+      },
+      modalContent: {
+        backgroundColor: "#1e1f24",
+        color: "#ffffff",
+      },
+      card: {
+        backgroundColor: "#2a2b30",
+        color: "#ffffff",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+      },
+      header: {
+        backgroundColor: "#1e1f24",
+        color: "#ffffff",
+      },
+      headerTitle: {
+        color: "#ffffff",
+        fontWeight: "600",
+      },
+      headerSubtitle: {
+        color: "#d0d0d0",
+      },
+      formFieldLabel: {
+        color: "#ffffff",
+      },
+      formFieldInput: {
+        backgroundColor: "#333437",
+        color: "#ffffff",
+        borderColor: "#666",
+        "&:focus": {
+          borderColor: "#3b5cd5",
+          boxShadow: "0 0 0 1px #3b5cd5",
+        },
+      },
+      formButtonPrimary: {
+        backgroundColor: "#3b5cd5",
+        color: "#ffffff",
+        "&:hover": { backgroundColor: "#4a6de5" },
+      },
+      footer: {
+        display: "none",
+      },
+      socialButtons: {
+        "& .cl-socialButtonsIconButton": {
+          backgroundColor: "#333437",
+          borderColor: "#666",
+          "&:hover": { backgroundColor: "#44464a" },
+        },
+        "& .cl-socialButtonsIconButton__icon": {
+          color: "#ffffff",
+        },
+      },
+      dividerLine: {
+        backgroundColor: "#666",
+      },
+      dividerText: {
+        color: "#d0d0d0",
+      },
+    },
+  };
+
+  const userButtonAppearance = {
+    elements: {
+      userButtonAvatarBox: expand
+        ? "w-10 h-10 opacity-90 hover:opacity-100 transition-opacity duration-200"
+        : "w-9 h-9 p-2 rounded-xl transition-all duration-300 hover:bg-gradient-to-br from-[#2c2d30] to-[#44464a] hover:ring-2 hover:ring-blue-500 hover:scale-110 backdrop-blur-sm bg-opacity-50",
+      userButtonBox: "flex items-center",
+      userButtonTrigger: "flex items-center gap-2",
+      userButtonPopoverCard: {
+        backgroundColor: "#2a2b30",
+        color: "#ffffff",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+      },
+      userButtonOuterIdentifier: {
+        color: "#ffffff",
+        fontWeight: "500",
+      },
+      userButtonPopoverActionButton: {
+        backgroundColor: "#2a2b30",
+        color: "#ffffff",
+        "&:hover": { backgroundColor: "#44464a" },
+      },
+      userButtonPopoverActionButtonIcon: {
+        color: "#ffffff",
+      },
+      userButtonPopoverFooter: {
+        display: "none",
+      },
+      userButtonPopoverMain: {
+        backgroundColor: "#2a2b30",
+        color: "#ffffff",
+      },
+      userButtonPopoverActions: {
+        backgroundColor: "#2a2b30",
+      },
+      userButtonAvatarImage: {
+        backgroundColor: "#333437",
+      },
+      userButtonPopoverManageAccountModal: {
+        backgroundColor: "#1e1f24",
+        color: "#ffffff",
+      },
+      userButtonPopoverManageAccountModalOverlay: {
+        backgroundColor: "rgba(30, 31, 36, 0.9)",
+      },
+      userButtonPopoverManageAccountModalCard: {
+        backgroundColor: "#2a2b30",
+        color: "#ffffff",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+      },
+      userButtonPopoverManageAccountModalHeader: {
+        backgroundColor: "#1e1f24",
+        color: "#ffffff",
+      },
+      userButtonPopoverManageAccountModalHeaderTitle: {
+        color: "#ffffff",
+        fontWeight: "600",
+      },
+      userButtonPopoverManageAccountModalHeaderSubtitle: {
+        color: "#d0d0d0",
+      },
+      userButtonPopoverManageAccountModalFormFieldLabel: {
+        color: "#ffffff",
+      },
+      userButtonPopoverManageAccountModalFormFieldInput: {
+        backgroundColor: "#333437",
+        color: "#ffffff",
+        borderColor: "#666",
+        "&:focus": {
+          borderColor: "#3b5cd5",
+          boxShadow: "0 0 0 1px #3b5cd5",
+        },
+      },
+      userButtonPopoverManageAccountModalFormButtonPrimary: {
+        backgroundColor: "#3b5cd5",
+        color: "#ffffff",
+        "&:hover": { backgroundColor: "#4a6de5" },
+      },
+      userButtonPopoverManageAccountModalFooter: {
+        display: "none",
+      },
+    },
+  };
 
   return (
     <div>
       <div
         className={`transition-all duration-300 ease-in-out bg-gradient-to-b from-[#1e1f24] to-[#2a2b30] h-screen flex flex-col justify-between pt-6 pb-6 ${
           expand ? "w-64" : "w-20"
-        } shadow-2xl`} 
+        } shadow-2xl`}
       >
         {/* Top Section */}
         <div className="flex flex-col items-center gap-4">
@@ -57,7 +192,7 @@ const Sidebar = () => {
                   <Image
                     src={assets.logo_icon}
                     alt="Logo"
-                    width={80} 
+                    width={80}
                     height={80}
                     className="object-contain opacity-95 hover:opacity-100 transition-all duration-300 hover:scale-105"
                   />
@@ -78,11 +213,11 @@ const Sidebar = () => {
                   className="p-1 rounded-full mb-4 transition-all duration-300 ease-in-out hover:bg-gradient-to-tr from-[#2c2d30] to-[#44464a] hover:ring-2 hover:ring-blue-500 hover:scale-110"
                 />
                 {!expand ? (
-                  <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-xs px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg max-w-5xl break-words transition-opacity duration-200">
-                    Sidebar
+                  <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-xs px-3 py-1 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg transition-opacity duration-200 whitespace-nowrap">
+                    Open Sidebar
                   </div>
                 ) : (
-                  <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-xs px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg max-w-5xl break-words transition-opacity duration-200">
+                  <div className="absolute left-full ml-3 top-2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-[12px] px-3 py-2 rounded-tl-3xl rounded-tr-2xl rounded-br-3xl shadow-lg transition-opacity duration-200 whitespace-nowrap">
                     Close Sidebar
                   </div>
                 )}
@@ -107,44 +242,8 @@ const Sidebar = () => {
             </button>
           )}
 
-          <div className="flex flex-col w-full">
-            {expand && (
-              <>
-                
-                <button
-                  className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl px-4 py-2 mx-4 my-2 transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:scale-105 active:scale-95 shadow-lg backdrop-blur-sm bg-opacity-80"
-                >
-                  <Image
-                    src={assets.chat_icon}
-                    alt="New Chat"
-                    width={25}
-                    height={20}
-                    className="mr-2"
-                  />
-                  <span className="text-sm font-semibold tracking-wide">
-                    New Chat
-                  </span>
-                </button>
-
-                {/* Chat History */}
-                <div className="flex flex-col gap-1 px-4 max-h-[calc(100vh-300px)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#2a2b30] scrollbar-thumb-rounded-full">
-                  {chatHistory.map((chat, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between text-white text-sm py-2 px-3 rounded-xl hover:bg-[#2c2d30]/80 transition-all duration-200 cursor-pointer group backdrop-blur-sm bg-opacity-50 border border-gray-700/30"
-                    >
-                      <span className="truncate flex-1">{chat.title}</span>
-                      {chat.date && (
-                        <span className="text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                          {chat.date}
-                        </span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+          {/* Use the new ChatHistorySection component */}
+          <ChatHistorySection expand={expand} />
         </div>
 
         {/* Bottom Section */}
@@ -200,31 +299,53 @@ const Sidebar = () => {
             </button>
           )}
 
-          
+          {/* Profile Section */}
           {expand ? (
             <div className="flex items-center px-4 py-2 rounded-xl hover:bg-[#2c2d30]/80 transition-all duration-200 cursor-pointer backdrop-blur-sm bg-opacity-50 border border-gray-700/30">
-              <Image
-                src={assets.profile_icon}
-                alt="Profile"
-                width={40}
-                height={28}
-                className="cursor-pointer opacity-90 hover:opacity-100"
-              />
-              <span className="ml-2 text-white text-sm font-semibold tracking-wide">
-                My Profile
-              </span>
+              {isSignedIn ? (
+                <>
+                  <UserButton
+                    showName={true}
+                    appearance={userButtonAppearance}
+                  />
+                </>
+              ) : (
+                <button
+                  onClick={() => openSignIn({ appearance: signInAppearance })}
+                  className="flex items-center w-full"
+                >
+                  <Image
+                    src={assets.profile_icon}
+                    alt="Profile"
+                    width={40}
+                    height={28}
+                    className="cursor-pointer opacity-90 hover:opacity-100"
+                  />
+                  <span className="ml-2 text-white text-sm font-semibold tracking-wide">
+                    Sign In
+                  </span>
+                </button>
+              )}
             </div>
           ) : (
             <div className="relative group flex flex-col items-center">
-              <Image
-                src={assets.profile_icon}
-                alt="Profile"
-                width={35}
-                height={28}
-                className="cursor-pointer opacity-90 hover:opacity-100 p-2 rounded-xl transition-all duration-300 hover:bg-gradient-to-br from-[#2c2d30] to-[#44464a] hover:ring-2 hover:ring-blue-500 hover:scale-110 backdrop-blur-sm bg-opacity-50"
-              />
+              {isSignedIn ? (
+                <UserButton
+                  appearance={userButtonAppearance}
+                />
+              ) : (
+                <button onClick={() => openSignIn({ appearance: signInAppearance })}>
+                  <Image
+                    src={assets.profile_icon}
+                    alt="Profile"
+                    width={35}
+                    height={28}
+                    className="cursor-pointer opacity-90 hover:opacity-100 p-2 rounded-xl transition-all duration-300 hover:bg-gradient-to-br from-[#2c2d30] to-[#44464a] hover:ring-2 hover:ring-blue-500 hover:scale-110 backdrop-blur-sm bg-opacity-50"
+                  />
+                </button>
+              )}
               <div className="absolute bottom-full mb-2 hidden group-hover:block text-xs text-white bg-black/90 px-2 py-1 rounded shadow-lg transition-opacity duration-200">
-                Profile
+                {isSignedIn ? "Profile" : "Sign In"}
               </div>
             </div>
           )}
