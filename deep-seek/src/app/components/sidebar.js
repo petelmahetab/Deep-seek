@@ -167,7 +167,7 @@ const Sidebar = () => {
   return (
     <div>
       <div
-        className={`transition-all duration-300 ease-in-out bg-gradient-to-b from-[#1e1f24] to-[#2a2b30] h-screen flex flex-col justify-between pt-6 pb-6 ${
+        className={`transition-all duration-300 ease-in-out bg-gradient-to-b bg-[#1e1f24] from-[#1e1f24] to-[#2a2b30] h-screen flex flex-col justify-between pt-6 pb-6 ${
           expand ? "w-64" : "w-20"
         } shadow-2xl`}
       >
@@ -226,7 +226,7 @@ const Sidebar = () => {
           </div>
 
           {!expand && (
-            <button className="relative group flex flex-col cursor-pointer items-center focus-outline-none">
+            <button className="relative group flex flex-col cursor-pointer items-center focus-outline-none bg-[#1e1f24]">
               <div>
                 <Image
                   src={assets.chat_icon}
@@ -235,7 +235,7 @@ const Sidebar = () => {
                   height={40}
                   className="p-2 rounded-xl transition-all duration-300 ease-in-out hover:bg-gradient-to-br from-[#2c2d30] to-[#44464a] hover:ring-2 hover:ring-blue-500 hover:scale-110 backdrop-blur-sm bg-opacity-50"
                 />
-                <div className="absolute w-[90px] left-full ml-3 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-s px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg max-w-5xl break-words transition-opacity duration-200">
+                <div className="absolute left-full ml-9 top-1/2 -translate-y-1/2 hidden group-hover:flex bg-black/90 text-white text-xs px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg transition-opacity duration-200 whitespace-nowrap">
                   New Chat
                 </div>
               </div>
@@ -266,12 +266,12 @@ const Sidebar = () => {
               <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs rounded-full px-2 py-1 ml-2">
                 NEW
               </span>
-              <div className="absolute w-[140px] left-0 ml-3 bottom-0 -translate-y-1/3 hidden group-hover:flex bg-black/90 text-white px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg transition-opacity duration-200">
+              <div className="absolute z-[2000] w-[140px]  ml-6  left-50 -translate-y-1/3 hidden group-hover:flex bg-black/90 text-white px-3 py-2 rounded-tl-2xl rounded-tr-2xl rounded-br-2xl shadow-lg transition-opacity duration-200">
                 <Image
                   src={assets.qrcode}
                   alt="QR Code"
-                  width={150}
-                  height={200}
+                  width={160}
+                  height={250}
                   className="object-cover"
                   placeholder="blur"
                 />

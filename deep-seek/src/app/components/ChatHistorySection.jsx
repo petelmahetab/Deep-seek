@@ -5,35 +5,38 @@ import ChatHistoryItem from './ChatHistoryItem';
 
 const ChatHistorySection = ({ expand }) => {
   const [chatHistory, setChatHistory] = useState([
-    { title: "10 OS Interview Questions wit", date: "7 Days" },
-    { title: "Greeting and Offer of Assistant", date: "30 Days" },
-    { title: "Optimizing Hamming Distance", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "2025-03", date: "" },
-    { title: "Resolving WebContainer Initial", date: "" },
-    { title: "Installing Node.js with NVM on", date: "" },
-    { title: "Resolving MongoDB Atlas Con", date: "" },
-    { title: "Resolving Vercel Serverless Fu", date: "" },
-    { title: "10 OS Interview Questions wit", date: "7 Days" },
-    { title: "Greeting and Offer of Assistant", date: "30 Days" },
-    { title: "Optimizing Hamming Distance", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
-    { title: "Assisting with the image concept", date: "" },
+    { id: "1", title: "Assisting with the image concept", date: "" },
+    { id: "2", title: "Assisting with the image concept", date: "" },
+    { id: "3", title: "Assisting with the image concept", date: "" },
+    { id: "4", title: "Assisting with the image concept", date: "" },
+    { id: "5", title: "Assisting with the image concept", date: "" },
+    { id: "6", title: "Assisting with the image concept", date: "" },
+    { id: "7", title: "Assisting with the image concept", date: "" },
+    { id: "8", title: "Assisting with the image concept", date: "" },
+    { id: "9", title: "Assisting with the image concept", date: "" },
+    { id: "10", title: "Assisting with the image concept", date: "" },
+    { id: "11", title: "Assisting with the image concept", date: "" },
+    { id: "12", title: "Assisting with the image concept", date: "" },
+    { id: "13", title: "Assisting with the image concept", date: "" },
+    { id: "14", title: "Assisting with the image concept", date: "" },
+    { id: "15", title: "Assisting with the image concept", date: "" },
+    { id: "16", title: "Assisting with the image concept", date: "" },
+    { id: "17", title: "Assisting with the image concept", date: "" },
+    { id: "18", title: "Assisting with the image concept", date: "" },
+    { id: "19", title: "Assisting with the image concept", date: "" },
+    { id: "20", title: "Assisting with the image concept", date: "" },
   ]);
 
-  const handleRename = (oldTitle, newTitle) => {
+  const handleRename = (id, newTitle) => {
     setChatHistory((prev) =>
       prev.map((chat) =>
-        chat.title === oldTitle ? { ...chat, title: newTitle } : chat
+        chat.id === id ? { ...chat, title: newTitle } : chat
       )
     );
   };
 
-  const handleDelete = (title) => {
-    setChatHistory((prev) => prev.filter((chat) => chat.title !== title));
+  const handleDelete = (id) => {
+    setChatHistory((prev) => prev.filter((chat) => chat.id !== id));
   };
 
   return (
@@ -56,14 +59,15 @@ const ChatHistorySection = ({ expand }) => {
           </button>
 
           {/* Chat History */}
-          <div className="flex flex-col gap-1 px-4 max-h-[calc(100vh-300px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-[#1e1f24] scrollbar-thumb-rounded-full">
-            {chatHistory.map((chat, index) => (
-              <ChatHistoryItem
-                key={index}
-                chat={chat}
-                onRename={handleRename}
-                onDelete={handleDelete}
-              />
+          <div className="flex flex-col gap-1 px-4 max-h-[calc(100vh-300px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-50 dark:scrollbar-thumb-gray-700 scrollbar-track-red scrollbar-thumb-rounded-full relative z-10 bg-[#1e1f24]">
+            {chatHistory.map((chat) => (
+              <div key={chat.id} className="relative">
+                <ChatHistoryItem
+                  chat={chat}
+                  onRename={handleRename}
+                  onDelete={handleDelete}
+                />
+              </div>
             ))}
           </div>
         </>

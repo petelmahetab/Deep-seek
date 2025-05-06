@@ -10,7 +10,7 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
   const handleRename = () => {
     setIsRenaming(false);
     if (newTitle.trim() && newTitle !== chat.title) {
-      onRename(chat.title, newTitle);
+      onRename(chat.id, newTitle);
     }
   };
 
@@ -21,7 +21,7 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
 
   return (
     <div className="flex items-center justify-between p-2 text-white text-sm group cursor-pointer rounded-xl hover:bg-[#2c2d30]/80 transition-all duration-200 backdrop-blur-sm bg-opacity-50 border border-gray-700/30">
-      {/* Chat Title (Editable if renaming) */}
+     
       {isRenaming ? (
         <input
           type="text"
@@ -49,7 +49,7 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
             {chat.date}
           </span>
         )}
-        <div className="relative flex items-center justify-center h-6 w-6 aspect-square hover:bg-black/80 rounded-lg">
+        <div className="relative flex items-center justify-center h-6 w-6 aspect-square hover:bg-black/80 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <Image
             src={assets.three_dots}
             alt="Options"
@@ -58,11 +58,19 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
           />
           {isDropdownOpen && (
             <div
-              className="absolute right-0 top-8 bg-gray-800 rounded-xl w-max p-3 shadow-lg border border-gray-600 z-50"
-              onClick={(e) => e.stopPropagation()} // Prevent clicks on dropdown from closing it
+              className="absolute right-0  bottom-full  bg-gray-800 rounded-xl w-max p-3 shadow-lg border border-gray-600 z-[2000] min-w-[120px]"
+              onClick={(e) => e.stopPropagation()} 
             >
+              <div>
+                <p
+                  className="text-[12px] absolute top-0 right-3 p-1 mt-1  bg-gray-600 hover:bg-gray-700 w-auto rounded-md hover:text-black cursor-pointer"
+                  onClick={() => setIsDropdownOpen(false)} 
+                >
+                  Close
+                </p>
+              </div>
               <div
-                className="flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-lg cursor-pointer"
+                className="flex items-center gap-3 hover:bg-white/10 px-3 py-2 mt-3 rounded-lg cursor-pointer"
                 onClick={() => {
                   setIsRenaming(true);
                   setIsDropdownOpen(false);
@@ -74,7 +82,7 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
               <div
                 className="flex items-center gap-3 hover:bg-white/10 px-3 py-2 rounded-lg cursor-pointer"
                 onClick={() => {
-                  onDelete(chat.title);
+                  onDelete(chat.id);
                   setIsDropdownOpen(false);
                 }}
               >
