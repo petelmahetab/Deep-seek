@@ -311,7 +311,10 @@ const Sidebar = () => {
                 </>
               ) : (
                 <button
-                  onClick={() => openSignIn({ appearance: signInAppearance })}
+                  onClick={() => {
+                    console.log("Sign In ")
+                    openSignIn({
+                       appearance: signInAppearance })}}
                   className="flex items-center w-full"
                 >
                   <Image

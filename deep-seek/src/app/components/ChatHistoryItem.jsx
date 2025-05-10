@@ -42,7 +42,7 @@ const ChatHistoryItem = ({ chat, onRename, onDelete }) => {
         <span className="truncate flex-1">{chat.title}</span>
       )}
 
-      {/* Date and Three Dots Icon */}
+   
       <div className="flex items-center gap-2">
         {chat.date && (
           <span className="text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-200">

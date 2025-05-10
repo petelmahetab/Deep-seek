@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { assets } from "@/images/assets/assets.js";
 import Sidebar from "./components/sidebar";
+import Message from "./components/Message";
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
@@ -120,12 +121,14 @@ export default function Home() {
            
             <div className="absolute bottom-[-40px] w-full flex justify-center">
               <p className="text-[13px] text-zinc-500 font-bold">
-                AI-generated, for reference only
+                AI-generated, for reference only.
               </p>
             </div>
           </div>
         ) : (
-          <div className="w-full">{/* Message list */}</div>
+          <div className="w-full">
+            <Message/>
+          </div>
         )}
       </div>
     </div>
